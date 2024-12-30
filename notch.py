@@ -2,7 +2,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import iirnotch, lfilter
-from scipy.io.wavfile import wavfile
+from scipy.io import wavfile
 
 # Generate a test signal
 fs = 44100  # Sampling rate
