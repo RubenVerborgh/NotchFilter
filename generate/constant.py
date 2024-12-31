@@ -5,7 +5,7 @@ import numpy as np
 class ConstantFrequenciesGenerator(Processor):
     def __init__(self):
         super().__init__()
-        self.frequencies = [440, 1000, 1500]
+        self.frequencies = [440, 554.37, 880, 1760]
 
     def generate(self, t):
         signal = sum(np.sin(2 * np.pi * freq * t) for freq in self.frequencies)

@@ -5,7 +5,7 @@ from scipy.signal import iirnotch, lfilter
 class NotchFilter(Processor):
     def __init__(self):
         super().__init__()
-        self.notch_freq = 1000.0
+        self.notch_freq = 554.37
         self.quality_factor = 30.0
 
     def filter(self, signal):
