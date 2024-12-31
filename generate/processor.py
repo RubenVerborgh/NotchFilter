@@ -11,6 +11,7 @@ class Processor:
 
         # Derived properties
         self.samples = int(self.seconds * self.sample_rate)
+        self.time_step = 1 / self.sample_rate
         self.bit_depth = 2 ** self.bits
         self.sample_max = (self.bit_depth >> 1) - 1
         self.sample_min = -self.sample_max
