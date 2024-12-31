@@ -13,7 +13,7 @@ signal = sum(np.sin(2 * np.pi * freq * t) for freq in frequencies)
 signal = signal / np.max(np.abs(signal)) * 0.5  # Normalize
 
 # Save generated signal to file
-default_directory = r'C:\Your\Path\Here'
+default_directory = r'output'
 os.makedirs(default_directory, exist_ok=True)
 test_file = os.path.join(default_directory, 'test_notch.wav')
 wavfile.write(test_file, fs, (signal * 32767).astype(np.int16))
