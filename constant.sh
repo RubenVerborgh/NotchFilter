@@ -6,3 +6,4 @@
 ./visualize/waveform.py output/constant.wav output/constant_filtered.wav &
 ./visualize/frequencies.py output/constant.wav output/constant_filtered.wav &
 ./visualize/polar.py output/constant.wav output/constant_filtered.wav &
+./visualize/polar_average.py output/constant.wav output/constant_filtered.wav &

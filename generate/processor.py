@@ -6,7 +6,7 @@ from scipy.io import wavfile
 class Processor:
     def __init__(self):
         # Settings
-        self.seconds = 1
+        self.seconds = 5
         self.sample_rate = 44_100
         self.bits = 16
 
