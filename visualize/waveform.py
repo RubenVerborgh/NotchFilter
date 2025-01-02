@@ -10,4 +10,4 @@ class WaveformVisualizer(Processor):
         axes.set_xlabel('t (s)')
         axes.set_ylabel('amplitude')
 
-WaveformVisualizer().main_visualize(__name__)
+WaveformVisualizer.main_visualize(__name__)

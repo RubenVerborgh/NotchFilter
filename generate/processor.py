@@ -18,27 +18,33 @@ class Processor:
         self.sample_min = -self.sample_max
         self.nyquist_frequency = self.sample_rate // 2
 
-    def main_generator(self, name):
+    @classmethod
+    def main_generator(cls, name):
         if name == '__main__':
-            output_file = sys.argv[1]
-            signal = self.generate(self.time())
-            self.write(signal, output_file)
+            _, output_file, *options = sys.argv
+            generator = cls(*options)
 
-    def main_filter(self, name):
+            signal = generator.generate(generator.time())
+            generator.write(signal, output_file)
+
+    @classmethod
+    def main_filter(cls, name):
         if name == '__main__':
-            input_file = sys.argv[1]
-            output_file = sys.argv[2]
+            _, input_file, output_file, *options = sys.argv
+            filter = cls(*options)
+            signal = filter.read(input_file)
 
-            signal = self.read(input_file)
-            filtered = self.filter(signal)
+            filtered = filter.filter(signal)
+            filter.write(filtered, output_file)
 
-            self.write(filtered, output_file)
-
-    def main_visualize(self, name):
+    @classmethod
+    def main_visualize(cls, name):
         if name == '__main__':
             files = sys.argv[1:]
-            signals = [self.read(f) for f in files]
-            self.show(self.time(), signals, files)
+            visualizer = cls()
+            signals = [visualizer.read(f) for f in files]
+
+            visualizer.show(visualizer.time(), signals, files)
 
     def time(self):
         return np.linspace(0, self.seconds, self.samples, endpoint=False)

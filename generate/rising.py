@@ -3,9 +3,16 @@ from processor import Processor
 import numpy as np
 
 class RisingFrequenciesGenerator(Processor):
-    def __init__(self):
+    def __init__(self, *options):
         super().__init__()
-        self.sweep = range(self.nyquist_frequency)
+
+        if len(options) == 2:
+            start = int(options[0])
+            stop = int(options[1])
+        else:
+            start = 0
+            stop = int(options[0]) if options else self.nyquist_frequency
+        self.sweep = range(start, stop)
 
     def generate(self, t):
         # Determine frequency and corresponding angle at each step

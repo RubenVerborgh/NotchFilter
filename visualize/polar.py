@@ -31,4 +31,4 @@ class PolarVisualizer(Processor):
         line, = axes.plot(theta, signal, linewidth=0.1, label=f"{int(frequency)} Hz")
         return line
 
-PolarVisualizer().main_visualize(__name__)
+PolarVisualizer.main_visualize(__name__)

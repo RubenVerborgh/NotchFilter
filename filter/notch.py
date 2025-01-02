@@ -3,10 +3,10 @@ from processor import Processor
 from scipy.signal import iirnotch, lfilter
 
 class NotchFilter(Processor):
-    def __init__(self):
+    def __init__(self, *options):
         super().__init__()
-        self.notch_freq = 554.37
-        self.quality_factor = 30.0
+        self.notch_freq = float(options[0]) if len(options) >= 1 else 554.37
+        self.quality_factor = float(options[1]) if len(options) >= 2 else 30.0
 
     def filter(self, signal):
         # Define a notch filter function
@@ -25,4 +25,4 @@ class NotchFilter(Processor):
 
         return filtered
 
-NotchFilter().main_filter(__name__)
+NotchFilter.main_filter(__name__)

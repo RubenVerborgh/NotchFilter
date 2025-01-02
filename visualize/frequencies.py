@@ -21,4 +21,4 @@ class FrequenciesVisualizer(Processor):
         axes.set_xlabel('frequency (Hz)')
         axes.set_ylabel('magnitude')
 
-FrequenciesVisualizer().main_visualize(__name__)
+FrequenciesVisualizer.main_visualize(__name__)
