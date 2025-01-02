@@ -36,7 +36,7 @@ class Processor:
         if name == '__main__':
             files = sys.argv[1:]
             signals = [self.read(f) for f in files]
-            self.show(self.time(), signals)
+            self.show(self.time(), signals, files)
 
     def time(self):
         return np.linspace(0, self.seconds, self.samples, endpoint=False)
