@@ -1,11 +1,12 @@
 import sys
 import numpy as np
+import matplotlib.pyplot as plt
 from scipy.io import wavfile
 
 class Processor:
     def __init__(self):
         # Settings
-        self.seconds = 5
+        self.seconds = 1
         self.sample_rate = 44_100
         self.bits = 16
 
@@ -15,6 +16,7 @@ class Processor:
         self.bit_depth = 2 ** self.bits
         self.sample_max = (self.bit_depth >> 1) - 1
         self.sample_min = -self.sample_max
+        self.nyquist_frequency = self.sample_rate // 2
 
     def main_generator(self, name):
         if name == '__main__':
@@ -61,5 +63,20 @@ class Processor:
     def filter(self, signal):
         pass
 
-    def show(self, signals):
+    def show(self, t, signals, titles):
+        plt.figure()
+
+        for i, signal in enumerate(signals):
+            axes = self.subplot(i + 1, len(signals))
+            self.plot(axes, t, signal)
+            axes.set_title(titles[i], va='bottom', y=1.2)
+
+        plt.gcf().canvas.manager.set_window_title(self.title)
+        plt.tight_layout()
+        plt.show()
+
+    def subplot(self, pos, count):
+        return plt.subplot(count, 1, pos)
+
+    def plot(self, axes, t, signal):
         pass

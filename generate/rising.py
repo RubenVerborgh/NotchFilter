@@ -5,7 +5,7 @@ import numpy as np
 class RisingFrequenciesGenerator(Processor):
     def __init__(self):
         super().__init__()
-        self.sweep = range(20, 20_000)
+        self.sweep = range(self.nyquist_frequency)
 
     def generate(self, t):
         # Determine frequency and corresponding angle at each step
