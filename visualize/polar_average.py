@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 class PolarAverageVisualizer(Processor):
     title = "Polar Average"
 
-    def __init__(self):
+    def __init__(self, *frequencies):
         super().__init__()
-        self.frequencies = [440, 554.37, 880]
+        self.frequencies = [float(f) for f in frequencies] or [440, 880]
 
     def subplot(self, pos, count):
         return plt.subplot(1, count, pos, polar=True)
@@ -36,6 +36,8 @@ class PolarAverageVisualizer(Processor):
         bins.append(bins[0])
         theta = np.linspace(0, 2 * np.pi, len(bins))
         line, = axes.plot(theta, bins, label=f"{int(frequency)} Hz")
+        axes.set_yticks([0])
+        axes.set_yticklabels([])
         return line
 
 PolarAverageVisualizer.main_visualize(__name__)

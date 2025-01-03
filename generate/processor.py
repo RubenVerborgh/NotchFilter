@@ -1,10 +1,11 @@
 import sys
+import re
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.io import wavfile
 
 class Processor:
-    def __init__(self):
+    def __init__(self, *options):
         # Settings
         self.seconds = 5
         self.sample_rate = 44_100
@@ -40,8 +41,14 @@ class Processor:
     @classmethod
     def main_visualize(cls, name):
         if name == '__main__':
-            files = sys.argv[1:]
-            visualizer = cls()
+            files = []
+            options = []
+            for i, value in enumerate(sys.argv[1:]):
+                if options or re.fullmatch(r'^[0-9\.]+$', value):
+                    options.append(value)
+                else:
+                    files.append(value)
+            visualizer = cls(*options)
             signals = [visualizer.read(f) for f in files]
 
             visualizer.show(visualizer.time(), signals, files)

@@ -7,9 +7,9 @@ from matplotlib.lines import Line2D
 class PolarVisualizer(Processor):
     title = "Polar"
 
-    def __init__(self):
+    def __init__(self, *frequencies):
         super().__init__()
-        self.frequencies = [440, 880]
+        self.frequencies = [float(f) for f in frequencies] or [440, 880]
 
     def subplot(self, pos, count):
         return plt.subplot(1, count, pos, polar=True)
@@ -29,6 +29,8 @@ class PolarVisualizer(Processor):
         t = np.linspace(0, frequency * self.seconds, len(signal))
         theta = 2 * np.pi * t
         line, = axes.plot(theta, signal, linewidth=0.1, label=f"{int(frequency)} Hz")
+        axes.set_yticks([0])
+        axes.set_yticklabels([])
         return line
 
 PolarVisualizer.main_visualize(__name__)
